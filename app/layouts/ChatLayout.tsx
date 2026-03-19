@@ -2,8 +2,21 @@ import { X } from "lucide-react";
 import { ScrollArea } from "~/components/ui/scroll-area";
 import { Button } from "~/components/ui/button";
 import { NavLink, Outlet } from "react-router";
+import { ContactList } from "~/chat/components/ContactList";
+import { getClients } from "~/fake/fake-data";
+import type { Route } from "./+types/ChatLayout";
 
-export default function ChatLayout() {
+export async function loader() {
+  const clients = await getClients();
+
+  console.log(clients);
+
+  return {
+    clients,
+  };
+}
+
+export default function ChatLayout({ loaderData }: Route.ComponentProps) {
   return (
     <div className="flex h-screen bg-background">
       {/* Sidebar */}
@@ -14,67 +27,8 @@ export default function ChatLayout() {
             <span className="font-semibold">NexTalk</span>
           </div>
         </div>
-        <ScrollArea className="h-[calc(100vh-120px)]">
-          <div className="space-y-4 p-4">
-            <div className="space-y-1">
-              <h3 className="px-2 text-sm font-semibold">Contacts</h3>
-              <div className="space-y-1">
-                <NavLink to={"/chat"} className="w-full justify-start">
-                  <div className="h-6 w-6 rounded-full bg-blue-500 mr-2 shrink-0 flex items-center justify-center text-white text-xs">
-                    G5
-                  </div>
-                  G5 Customer
-                </NavLink>
-                <NavLink
-                  to={"/chat/ABC"}
-                  className={({ isActive }) => {
-                    return isActive
-                      ? "w-full justify-start flex items-center gap-2 bg-primary text-primary-foreground rounded-2xl"
-                      : "w-full justify-start flex items-center gap-2";
-                  }}
-                >
-                  <div className="h-6 w-6 rounded-full bg-green-500 mr-2 shrink-0 flex items-center justify-center text-white text-xs">
-                    JD
-                  </div>
-                  John Doe
-                </NavLink>
-                <Button variant="ghost" className="w-full justify-start">
-                  <div className="h-6 w-6 rounded-full bg-purple-500 mr-2 shrink-0 flex items-center justify-center text-white text-xs">
-                    AS
-                  </div>
-                  Alice Smith
-                </Button>
-                <Button variant="ghost" className="w-full justify-start">
-                  <div className="h-6 w-6 rounded-full bg-yellow-500 mr-2 shrink-0 flex items-center justify-center text-white text-xs">
-                    RJ
-                  </div>
-                  Robert Johnson
-                </Button>
-                <Button variant="ghost" className="w-full justify-start">
-                  <div className="h-6 w-6 rounded-full bg-pink-500 mr-2 shrink-0 flex items-center justify-center text-white text-xs">
-                    EW
-                  </div>
-                  Emma Wilson
-                </Button>
-              </div>
-            </div>
-            <div className="pt-4 border-t mt-4">
-              <h3 className="px-2 text-sm font-semibold mb-1">Recent</h3>
-              <Button variant="ghost" className="w-full justify-start">
-                <div className="h-6 w-6 rounded-full bg-gray-500 mr-2 shrink-0 flex items-center justify-center text-white text-xs">
-                  TM
-                </div>
-                Thomas Miller
-              </Button>
-              <Button variant="ghost" className="w-full justify-start">
-                <div className="h-6 w-6 rounded-full bg-red-500 mr-2 shrink-0 flex items-center justify-center text-white text-xs">
-                  SB
-                </div>
-                Sarah Brown
-              </Button>
-            </div>
-          </div>
-        </ScrollArea>
+
+        <ContactList clients={loaderData.clients} />
 
         <Button variant="destructive" className="w-full mt-4 flex items-center gap-2">
           <X className="h-4 w-4 mr-2" />

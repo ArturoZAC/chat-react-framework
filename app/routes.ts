@@ -7,13 +7,15 @@ export default [
     layout("layouts/AuthLayout.tsx", [
       route("login", "routes/auth/LoginPage.tsx"),
       route("register", "routes/auth/RegistePage.tsx"),
+      route("testing", "routes/auth/TestingPage.tsx"),
+      route("testing-args/:id/:name/:age", "routes/auth/TestingArgsPage.tsx"),
     ]),
   ]),
 
   ...prefix("chat", [
     layout("layouts/ChatLayout.tsx", [
       index("routes/chat/NotChatSelectedPage.tsx"),
-      route("ABC", "routes/chat/ClientChatPage.tsx"),
+      route("client/:id", "routes/chat/ClientChatPage.tsx"),
     ]),
   ]),
 ] satisfies RouteConfig;
