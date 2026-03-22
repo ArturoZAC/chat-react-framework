@@ -6,9 +6,10 @@ import { ScrollArea } from "~/components/ui/scroll-area";
 import { Button } from "~/components/ui/button";
 import { Textarea } from "~/components/ui/textarea";
 
+//prettier-ignore
 interface Message {
-  role: "agent" | "user";
-  content: string;
+  role     : "agent" | "user";
+  content  : string;
   timestamp: string;
 }
 
