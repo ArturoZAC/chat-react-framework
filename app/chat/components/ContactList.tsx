@@ -26,7 +26,7 @@ export const ContactList = ({ clients }: Props) => {
                     : "w-full my-2 justify-start flex items-center gap-2"
                 }
               >
-                <div className="h-6 w-6 rounded-full bg-gray-300 mr-2 flex-shrink-0 flex items-center justify-center text-white text-xs">
+                <div className="h-6 w-6 rounded-full bg-gray-300 mr-2 shrink-0 flex items-center justify-center text-white text-xs">
                   JD
                 </div>
                 <span className="text-gray-400">{client.name}</span>
@@ -37,13 +37,13 @@ export const ContactList = ({ clients }: Props) => {
         <div className="pt-4 border-t mt-4">
           <h3 className="px-2 text-sm font-semibold mb-1">Recent</h3>
           <Button variant="ghost" className="w-full justify-start">
-            <div className="h-6 w-6 rounded-full bg-gray-500 mr-2 flex-shrink-0 flex items-center justify-center text-white text-xs">
+            <div className="h-6 w-6 rounded-full bg-gray-500 mr-2 shrink-0 flex items-center justify-center text-white text-xs">
               TM
             </div>
             Thomas Miller
           </Button>
           <Button variant="ghost" className="w-full justify-start">
-            <div className="h-6 w-6 rounded-full bg-red-500 mr-2 flex-shrink-0 flex items-center justify-center text-white text-xs">
+            <div className="h-6 w-6 rounded-full bg-red-500 mr-2 shrink-0 flex items-center justify-center text-white text-xs">
               SB
             </div>
             Sarah Brown
